@@ -1,0 +1,46 @@
+#colormode {
+    height:30px;
+}
+
+.square {
+    height: 180px;
+    width: 180px;
+    border: 2px solid black;
+}
+
+div.square {
+    height: 180px;
+    width: 180px;
+    border: 2px solid black;
+}
+
+div.square.color {
+    height: 180px;
+    width: 180px;
+    border: 2px solid black;
+    background-color: whitesmoke;
+    animation: fade-in 0.5s;
+}
+
+@keyframes fade-in {
+  from  { 
+      opacity: 0%;
+  }
+  to {
+      opacity: 100%;
+  }
+}
+
+.square:hover {
+    transform: scale(1.1)
+}
+
+#container {
+    height: 800px;
+    width: 800px;
+    border: 5px solid burlywood;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: cornsilk;
+    
+}
