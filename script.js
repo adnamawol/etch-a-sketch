@@ -11,14 +11,6 @@ for (i=0;i<16;i++) {
 para.textContent="White";
 colorModeStatus.appendChild(para);
 
-//original reset
-/*const resetBtn = document.querySelector('#reset');
-resetBtn.addEventListener('click', () => {
-    gridSquares.forEach( (gridSquare) => {
-        gridSquare.classList.remove('color');
-    });
-}) */
-
 //reset for adding bg-color with JavaScript instead of CSS
 
 const resetBtn = document.querySelector('#reset');
@@ -31,8 +23,6 @@ resetBtn.addEventListener('click', () => {
     }
 })
 
-
-
 // users set number of grid squares
 
 const numOfSquaresBtn = document.querySelector('#howmany');
@@ -44,7 +34,6 @@ numOfSquaresBtn.addEventListener('click', () => {
 
 
 function userCreateSquares (num) {
-    
     for (i=0;i<(num*num);i++) {
     const square = document.createElement('div');
     square.classList.add('square');
@@ -57,7 +46,7 @@ function userCreateSquares (num) {
 const toggleColorBtn = document.querySelector('#toggle-color');
 toggleColorBtn.addEventListener('click', () => {
     gridSquares.forEach( (gridSquare) => {
-        gridSquare.addEventListener('mouseover', () => changeGridCol())
+        gridSquare.addEventListener('mouseover', (evt) => changeGridCol(evt))
     } );
 
     para.textContent="Psychedelic";
@@ -67,7 +56,7 @@ toggleColorBtn.addEventListener('click', () => {
 const toggleWhiteBtn = document.querySelector('#toggle-white');
 toggleWhiteBtn.addEventListener('click', () => {
     gridSquares.forEach((gridSquare) => {
-        gridSquare.addEventListener('mouseover', () => whitenGridCol())
+        gridSquare.addEventListener('mouseover', (evt) => whitenGridCol(evt))
     } );
 
     para.textContent="White";
@@ -80,22 +69,13 @@ toggleWhiteBtn.addEventListener('click', () => {
 
 const gridSquares = document.querySelectorAll('div.square');
 
-function whitenGridCol() {
-    let gridSquares = document.querySelectorAll('div.square');
-    
-    let length = gridSquares.length;
-
-    for (i=0;i<length;i++) {
-        gridSquares[i].style.backgroundColor = "whitesmoke";
-        gridSquares[i].style.animation = "fade-in 0.8s";
-    }
+function whitenGridCol(evt) {
+    Object.assign(evt.target.style, {
+        backgroundColor: 'whitesmoke',
+        animation: 'fade-in 0.8s',
+    })
 }
 
-
-
-/*gridSquares.forEach( (gridSquare) => {
-    gridSquare.addEventListener('mouseover', () => gridSquare.classList.add('color'))
-} )*/
 
 //multi-colour tile mode
 
@@ -117,55 +97,15 @@ function rdmColGen () {
 const gridSquare = document.querySelector('div.square');
 let gridSquareStyle = document.querySelector('div.square').style;
 
-function changeGridCol () {
-    let gridSquares = document.querySelectorAll('div.square');
-    let length = gridSquares.length;
-
-    for (i=0;i<length;i++) {
-        gridSquares[i].style.backgroundColor = rdmColGen();
-        gridSquares[i].style.animation = "fade-in 0.8s";
-    }
+function changeGridCol (evt) {
+    Object.assign(evt.target.style, {
+        backgroundColor: rdmColGen(),
+        animation: 'fade-in 0.8s',
+    })
 }
 
 gridSquares.forEach((gridSquare) => {
-    gridSquare.addEventListener('mouseover', () => whitenGridCol('div.square'))
+    gridSquare.addEventListener('mouseover', (evt) => whitenGridCol(evt))
 } )
 
 
-/* function changeGridCol () {
-    gridSquareStyle.backgroundColor = rdmColGen();
-    gridSquareStyle.animation = "fade-in 0.8s";
-} */
-
-/*const gridSquaresStyle = document.querySelectorAll('div.square').style;
-
-gridSquaresStyle.forEach( (gridSquare) => {
-    gridSquare.addEventListener('mouseover', () => {
-        gridSquare.backgroundColor = rdmColGen();
-    })
-} )*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*button to try random colour generation*/
-const rdmColorBtn = document.querySelector('.rdm');
-const rdmColorBtnStyle = document.querySelector('.rdm').style;
-
-
-function changeBtnColor () {
-    rdmColorBtnStyle.backgroundColor = rdmColGen();
-}
-
-rdmColorBtn.addEventListener('click', () => changeBtnColor())
-//
