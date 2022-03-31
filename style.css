@@ -1,25 +1,23 @@
-#colormode {
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#button-box {
+    display: flex;
+    gap:10px;
+    padding: 10px;
+}
+
+    #colormode {
     height:30px;
 }
 
-.square {
-    height: 180px;
-    width: 180px;
-    border: 2px solid black;
-}
-
 div.square {
-    height: 180px;
-    width: 180px;
-    border: 2px solid black;
-}
-
-div.square.color {
-    height: 180px;
-    width: 180px;
-    border: 2px solid black;
-    background-color: whitesmoke;
-    animation: fade-in 0.5s;
+    box-sizing: border-box;
+    border: 0.8px solid black;
 }
 
 @keyframes fade-in {
@@ -36,11 +34,14 @@ div.square.color {
 }
 
 #container {
-    height: 800px;
-    width: 800px;
+    height: 590px;
+    width: 590px;
     border: 5px solid burlywood;
     display: flex;
     flex-wrap: wrap;
     background-color: cornsilk;
-    
+    gap: 0px;
+    box-sizing: border-box;
 }
+
+
