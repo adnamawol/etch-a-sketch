@@ -11,13 +11,17 @@ body{
     padding: 10px;
 }
 
-    #colormode {
+#colormode {
     height:30px;
+    width: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 div.square {
     box-sizing: border-box;
-    border: 0.8px solid black;
+    border: 0.2px solid white;
 }
 
 @keyframes fade-in {
@@ -44,4 +48,13 @@ div.square {
     box-sizing: border-box;
 }
 
+/*slider-container*/
 
+.slider-container,
+.slider-num-display {
+    padding: 20px;
+}
+
+.slider-num-display {
+    margin-top: -40px;
+}

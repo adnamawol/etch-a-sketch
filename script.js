@@ -3,35 +3,63 @@ const para = document.createElement('p');
 const colorModeStatus = document.querySelector('#colormode');
 const gridSquare = document.querySelector('div.square');
 
-// users set number of grid squares
 
+//default setting on window load
+window.addEventListener('load', () => {
+    para.textContent="White";
+    colorModeStatus.appendChild(para);
+});
+let penType = 'white';
 createSquares(4);
-para.textContent="White";
-colorModeStatus.appendChild(para);
+window.addEventListener('load', () => {
+    numSquare.textContent= slider.value;
+    sliderNumDisplay.appendChild(numSquare);
+});
+
+//slider that allows users to set number of grid square
+const slider = document.querySelector('.slider');
+const sliderNumDisplay = document.querySelector('.slider-num-display');
+const numSquare = document.createElement('p');
 
 function createSquares (num) {
     for (i=0;i<(num*num);i++) {
     const square = document.createElement('div');
-    square.classList.add('square');
     square.style.width = `${580/num}px`;
     square.style.height = `${580/num}px`;
+    square.classList.add('square');
     container.appendChild(square);
     }
 }
 
-const numOfSquaresBtn = document.querySelector('#howmany');
-numOfSquaresBtn.addEventListener('click', () => {
+slider.oninput = function(e) {
     const gridSquares = document.querySelectorAll('div.square');
     for (i=0;i<gridSquares.length;i++) {
         container.removeChild(gridSquares[i]);
-        }
-    let userNum = prompt("How many squares would you like to have on each side?",4)
-    if (userNum > 100 || userNum < 1) {
-        alert("Please key in a number between 1 and 100.")
-    } else {
-        createSquares(userNum);
     };
-});
+
+    let userNum = e.target.value
+    createSquares(userNum);
+    sliderNumDisplay.textContent = e.target.value;
+
+    const newGridSquares = document.querySelectorAll('div.square');
+
+    newGridSquares.forEach((gridSquare) => {
+        gridSquare.addEventListener('mouseover', (evt) => {
+            if (penType === 'white') {
+                whitenGridCol(evt);
+                console.log("I'm white!");
+            } else if (penType === 'psych') {
+                changeGridCol(evt);
+                console.log("I'm colourful!");
+            } else if (penType === 'erase') {
+                eraseGridCol(evt);
+                console.log("I'm erasing you!");
+            }
+        })
+    } )
+}
+
+
 
 //white tile mode
 
@@ -62,29 +90,32 @@ function changeGridCol (evt) {
     })
 }
 
-gridSquares.forEach((gridSquare) => {
-    gridSquare.addEventListener('mouseover', (evt) => whitenGridCol(evt))
-} )
-
 //Toggle between colour and non-colour modes, and remove individual grid Squares of colour
+
 
 const toggleColorBtn = document.querySelector('#toggle-color');
 toggleColorBtn.addEventListener('click', () => {
-    gridSquares.forEach( (gridSquare) => {
-        gridSquare.addEventListener('mouseover', (evt) => changeGridCol(evt))
-    } );
     para.textContent="Psychedelic";
     colorModeStatus.appendChild(para);
+    return penType = 'psych';
 })
 
 const toggleWhiteBtn = document.querySelector('#toggle-white');
 toggleWhiteBtn.addEventListener('click', () => {
-    gridSquares.forEach((gridSquare) => {
-        gridSquare.addEventListener('mouseover', (evt) => whitenGridCol(evt))
-    } );
     para.textContent="White";
     colorModeStatus.appendChild(para);
+    return penType = 'white';
 })
+
+
+//erasing individual square's bg-color
+
+const eraserBtn = document.querySelector('#eraser')
+eraserBtn.addEventListener('click', () => {
+    para.textContent = 'Eraser';
+    colorModeStatus.appendChild(para);
+    return penType = 'erase';
+} )
 
 function eraseGridCol (evt) {
     Object.assign(evt.target.style, {
@@ -93,17 +124,7 @@ function eraseGridCol (evt) {
     })
 }
 
-const eraserBtn = document.querySelector('#eraser')
-eraserBtn.addEventListener('click', () => {
-   gridSquares.forEach ( (gridSquare) => {
-       gridSquare.addEventListener( 'mouseover', (evt) => eraseGridCol(evt));
-    }) 
-    para.textContent = 'Eraser';
-    colorModeStatus.appendChild(para);
-} )
-
-//reset for adding bg-color
-
+//erase all grid colour
 const resetBtn = document.querySelector('#reset');
 resetBtn.addEventListener('click', () => {
     let gridSquares = document.querySelectorAll('div.square');
@@ -112,4 +133,20 @@ resetBtn.addEventListener('click', () => {
         gridSquares[i].style.backgroundColor = "transparent";
     }
 })
+
+//set pen mode
+gridSquares.forEach((gridSquare) => {
+    gridSquare.addEventListener('mouseover', (evt) => {
+        if (penType === 'white') {
+            whitenGridCol(evt);
+            console.log("I'm white!");
+        } else if (penType === 'psych') {
+            changeGridCol(evt);
+            console.log("I'm colourful!");
+        } else if (penType === 'erase') {
+            eraseGridCol(evt);
+            console.log("I'm erasing you!");
+        }
+    })
+} )
 
