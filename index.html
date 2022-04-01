@@ -8,28 +8,37 @@
 </head>
 
 <body>
+    <div id="title">Etch-a-Sketch</div>
+    <div id="enclosing-box">
+        <div id="container">
 
-    <div id="button-box">
-        <button id="reset">Reset</button><br><br>
-        <button id="eraser">Eraser</button><br><br>
-        <div id="colormode"></div><br>
-        <button id="toggle-color">Colour Mode</button><br><br>
-        <button id="toggle-white">White Mode</button><br><br>
-        
+
+        </div>
+        <div id="button-box">
+            <div class="slider-container">
+                <div class="slider-header">Grid Size:</div>
+                <div class="slider-num-display">
+                </div>
+                <input type="range" min="1" max="100" class="slider" step="1" value="4"> 
+                <div class="slider-header">Sketch Mode:</div>
+                <div id="colormode"></div>
+            </div>
+            
+            <div id="pens">
+                <div class="space"></div>
+                <div class="space-darker-0"><button id="toggle-white">White</button><br><br></div>
+                <div class="space"></div>
+                <div class="space-darker-2"><button id="reset">Reset</button><br><br></div>
+                <div class="space-darker-1"></div>
+                <div class="space-darker-3"><button id="toggle-color">Colour</button><br><br></div>
+                <div class="space"></div>
+                <div class="space-darker-4"><button id="eraser">Eraser</button><br><br></div>
+                <div class="space"></div>
+            </div>
+            
+        </div>
     </div>
-
-
-    <div id="container">
-
-
-    </div>
-
-    <div class="slider-container">
-        <input type="range" min="1" max="100" class="slider" step="1" value="4"> 
-    </div>
-    <div class="slider-num-display">
-
-    </div>
+    
 <br>
 
 </body>

@@ -1,7 +1,3 @@
 # etch-a-sketch
 
-1. Solve the problem of allowing user input on the number of grid squares per side. 
-
-Read up on how to use a slide button to indicate the corresponding number of grid squares. 
-
-2. Solve the problem of mouseover causing all tiles to change color (you only want the particular tile you're hovering over to change color)
+An iteration of Etch-a-Sketch completed as part of The Odin Project's Foundations course that has a simple UI inspired by the classic Game Boy Console. It enables user to toggle between different Sketch Modes, as well as selecting the number of squares displayed in the grid. 

@@ -12,7 +12,7 @@ window.addEventListener('load', () => {
 let penType = 'white';
 createSquares(4);
 window.addEventListener('load', () => {
-    numSquare.textContent= slider.value;
+    numSquare.textContent= `${slider.value} x ${slider.value}`;
     sliderNumDisplay.appendChild(numSquare);
 });
 
@@ -24,8 +24,8 @@ const numSquare = document.createElement('p');
 function createSquares (num) {
     for (i=0;i<(num*num);i++) {
     const square = document.createElement('div');
-    square.style.width = `${580/num}px`;
-    square.style.height = `${580/num}px`;
+    square.style.width = `${400/num}px`;
+    square.style.height = `${400/num}px`;
     square.classList.add('square');
     container.appendChild(square);
     }
@@ -39,7 +39,7 @@ slider.oninput = function(e) {
 
     let userNum = e.target.value
     createSquares(userNum);
-    sliderNumDisplay.textContent = e.target.value;
+    sliderNumDisplay.textContent = `${e.target.value} x ${e.target.value}`;
 
     const newGridSquares = document.querySelectorAll('div.square');
 
@@ -58,8 +58,6 @@ slider.oninput = function(e) {
         })
     } )
 }
-
-
 
 //white tile mode
 
